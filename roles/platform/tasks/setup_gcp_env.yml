@@ -14,6 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+- debug: msg="{{ plat__gcp_subnet_id if plat__gcp_subnet_id else plat__gcp_subnets_discovered[0].name }}"
+
+- debug: var=plat__gcp_subnet_id
+
+- debug: var=common__gcp_subnet_id
+
+- debug: var=infra.gcp.vpc.subnet_id
+
 - name: Set up CDP Environment Deployment on GCP
   cloudera.cloud.env:
     name: "{{ plat__env_name }}"
