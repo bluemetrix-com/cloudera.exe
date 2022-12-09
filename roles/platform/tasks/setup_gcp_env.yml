@@ -34,3 +34,4 @@
     tags: "{{ plat__tags }}"
     freeipa:
       instanceCountByGroup: "{{ plat__env_freeipa }}"
+    timeout: 14400
