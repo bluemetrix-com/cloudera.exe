@@ -29,6 +29,7 @@
     groups: "{{ __datahub_config_item.instance_groups | default(omit) }}"
     tags: "{{ __datahub_config_item.tags }}"
     wait: yes
+    timeout: 7200
   loop_control:
     loop_var: __datahub_config_item
     label: "{{ __datahub_config_item.name | default ('None') }}"
