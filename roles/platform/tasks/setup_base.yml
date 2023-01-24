@@ -85,6 +85,8 @@
     name: "{{ plat__datalake_name }}"
   register: __cdp_datalake_info
 
+- fail:
+
 - name: Extract Datalake version and Cloudera Manager endpoint
   ansible.builtin.set_fact:
     plat__cdp_datalake_version: "{{ __cdp_datalake_info.datalakes[0] | community.general.json_query(runtime) | first | regex_search('^\\d+\\.\\d+\\.\\d+') }}"

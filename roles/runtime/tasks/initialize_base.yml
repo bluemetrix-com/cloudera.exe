@@ -52,6 +52,8 @@
       ansible.builtin.set_fact:
         run__cdp_datalake_version: "{{ __cdp_datalake_version_info.versions[0].runtimeVersion | trim }}"
 
+- fail:
+
 # TODO Discover version if upstream is not present
 - name: Set fact for CDP Datalake version by assignment
   when: plat__cdp_datalake_version is defined

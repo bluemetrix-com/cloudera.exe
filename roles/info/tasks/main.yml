@@ -60,6 +60,8 @@
     env: "{{ info__env_name }}"
   register: __datalake_info
 
+- fail:
+
 - name: Query CDP Datahubs
   cloudera.cloud.datahub_cluster_info:
     env: "{{ info__env_name }}"
