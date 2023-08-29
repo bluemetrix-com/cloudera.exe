@@ -20,6 +20,7 @@
     filters:
       - name = "{{ plat__vpc_name }}"
   register: __gcp_vpc_discovered
+  when: not plat__gcp_subnet_id
 
 - name: Set GCP VPC Details
   when:
