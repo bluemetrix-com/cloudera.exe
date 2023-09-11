@@ -20,6 +20,14 @@ datahub:
     azure:
     gcp:
   definitions:
+    - name:
+      template:
+      definition:
+      instance_groups:
+      extension:
+      subnets_filter:
+      multi_az:
+      tags:
   image_catalog:
     name:
     url:
@@ -50,7 +58,7 @@ df:
   max_k8s_nodes:
   public_loadbalancer:
   loadbalancer_ip_ranges:
-  kube_ip_ranges:
+  k8s_ip_ranges:
   cluster_subnets:
   loadbalancer_subnets:
   teardown:
@@ -181,6 +189,7 @@ env:
         identity:
         log:
         ranger_audit:
+        raz: 
         xaccount:
       name:
         cross_account:
@@ -188,6 +197,7 @@ env:
         idbroker:
         log:
         ranger_audit:
+        raz: 
       name_suffix:
         admin:
         assignment:
@@ -232,8 +242,10 @@ env:
     user_sync:
     version:
     scale:
+    enable_raz: 
   gcp:
     auto_enable_services:
+    availability_zones:
     manage_identities:
     bindings:
       cross_account:
@@ -312,6 +324,7 @@ globals:
     private:
     public:
     ranger_audit:
+    raz:
     role:
     service_network:
     storage:
@@ -362,6 +375,8 @@ infra:
       tags:
     storage:
       tags:
+      bucket_object_ownership: 
+      bucket_acl_permissions: 
     private_endpoints:
   azure:
     metagroup:

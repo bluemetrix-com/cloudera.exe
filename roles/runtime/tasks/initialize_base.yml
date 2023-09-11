@@ -102,6 +102,9 @@
           template: "{{ __datahub_config.template | default(include.template | default(omit) ) }}"
           definition: "{{ __datahub_config.definition | default(include.definition | default(omit) ) }}"
           instance_groups: "{{ (overlay | length > 0) | ternary(overlay | map('cloudera.exe.combine_onto', base, recursive=True) | list, omit) }}"
+          extension: "{{ __datahub_config.extension | default(omit) }}"
+          subnets_filter: "{{ __datahub_config.subnets_filter | default(omit) }}"
+          multi_az: "{{ __datahub_config.multi_az | default(omit) }}"
           tags: "{{ __datahub_config.tags | default(run__datahub_tags) }}"
       loop: "{{ run__datahub_definitions }}"
       loop_control:
@@ -204,9 +207,13 @@
         loop_var: __dw_config
         index_var: __dw_config_index
 
+    - name: Ensure runtime configs is initialized
+      ansible.builtin.set_fact:
+        run__dw_vw_configs: "{{ run__dw_vw_configs | default([]) }}"
+
     - name: Construct CDP DW Virtual Warehouse configurations
       ansible.builtin.set_fact:
-        run__dw_vw_configs: "{{ run__dw_vw_configs | default([]) | union([config]) }}"
+        run__dw_vw_configs: "{{ run__dw_vw_configs | union([config]) }}"
       vars:
         config:
           dbc_name: "{{ __dw_config.0.name }}"

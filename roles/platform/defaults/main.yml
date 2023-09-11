@@ -122,9 +122,6 @@ plat__aws_storage_suffix:                     "{{ env.aws.storage.suffix | defau
 plat__aws_role_tags:                          "{{ env.aws.role.tags | default({}) }}"
 plat__aws_policy_tags:                        "{{ env.aws.policy.tags | default({}) }}"
 plat__aws_storage_tags:                       "{{ env.aws.storage.tags | default({}) }}"
-plat__aws_vpc_id:                             "{{ common__aws_vpc_id }}"
-plat__aws_public_subnet_ids:                  "{{ common__aws_public_subnet_ids }}"
-plat__aws_private_subnet_ids:                 "{{ common__aws_private_subnet_ids }}"
 
 plat__aws_xaccount_suffix:                    "{{ env.aws.role.label.cross_account | default(common__xaccount_suffix) }}"
 plat__aws_idbroker_suffix:                    "{{ common__aws_idbroker_suffix }}"
@@ -151,6 +148,8 @@ plat__aws_policy_urls:                        "{{ plat__aws_policy_urls_default 
 # GCP
 plat__gcp_project:                            "{{ common__gcp_project }}"
 plat__gcp_subnet_id:                          "{{ common__gcp_subnet_id }}"
+
+plat__gcp_availability_zones:                 "{{ env.gcp.availability_zones | default([]) }}"
 
 plat__gcp_role_suffix:                        "{{ env.gcp.role.suffix | default(common__role_suffix) }}"
 plat__gcp_storage_suffix:                     "{{ env.gcp.storage.suffix | default(common__storage_suffix) }}"
@@ -191,6 +190,7 @@ plat__azure_data_suffix:                      "{{ env.azure.role.label.data | de
 plat__azure_identity_suffix:                  "{{ env.azure.role.label.identity | default(common__identity_suffix) }}"
 plat__azure_datalake_admin_suffix:            "{{ env.azure.role.label.datalake_admin | default(common__datalake_admin_suffix) }}"
 plat__azure_ranger_audit_suffix:              "{{ env.azure.role.label.ranger_audit | default(common__ranger_audit_suffix) }}"
+plat__azure_raz_suffix:                       "{{ env.azure.role.label.raz | default(common__raz_suffix) }}"
 plat__azure_idbroker_suffix:                  "{{ env.azure.role.label.idbroker | default(common__idbroker_suffix) }}"
 
 plat__azure_owner_name_suffix:                "{{ env.azure.role.name_suffix.owner | default('owner') }}"
@@ -214,6 +214,7 @@ plat__azure_policy_url:                       "{{ env.azure.policy.url | default
 plat__azure_log_identity_name:                "{{ env.azure.role.name.log | default([plat__namespace, plat__azure_log_suffix, plat__azure_identity_suffix] | join('-')) }}"
 plat__azure_datalakeadmin_identity_name:      "{{ env.azure.role.name.datalake_admin | default([plat__namespace, plat__azure_datalake_admin_suffix, plat__azure_identity_suffix] | join('-')) }}"
 plat__azure_ranger_audit_identity_name:       "{{ env.azure.role.name.ranger_audit | default([plat__namespace, plat__azure_ranger_audit_suffix, plat__azure_identity_suffix] | join('-')) }}"
+plat__azure_raz_identity_name:                "{{ env.azure.role.name.raz | default([plat__namespace, plat__azure_raz_suffix, plat__azure_identity_suffix] | join('-')) }}"
 plat__azure_idbroker_identity_name:           "{{ env.azure.role.name.idbroker | default([plat__namespace, plat__azure_idbroker_suffix, plat__azure_identity_suffix] | join('-')) }}"
 
 plat__azure_xaccount_contributor_assn_name:             "{{ env.azure.role.assignment.cross_account.contributor | default('-'.join([plat__namespace, plat__azure_xaccount_suffix, plat__azure_contributor_name_suffix, plat__azure_assignment_name_suffix,ansible_date_time.iso8601]) | to_uuid )}}"
